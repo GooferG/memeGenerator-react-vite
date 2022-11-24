@@ -17,11 +17,9 @@ export default function CreateMemeForm() {
     setMeme((prevMemes) => ({ ...prevMemes, randomImage: url }));
   }
 
-  function getTopText(e) {
-    setMeme((prevMeme) => ({ ...prevMeme, topText: e.target.value }));
-  }
-  function getBottomText(e) {
-    setMeme((prevMeme) => ({ ...prevMeme, bottomText: e.target.value }));
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setMeme((prevMeme) => ({ ...prevMeme, [name]: value }));
   }
 
   return (
@@ -33,7 +31,7 @@ export default function CreateMemeForm() {
           type="text"
           name="topText"
           placeholder="Top Text"
-          onChange={getTopText}
+          onChange={handleChange}
         />
         <input
           className="form-input"
@@ -41,14 +39,18 @@ export default function CreateMemeForm() {
           name="bottomText"
           value={meme.bottomText}
           placeholder="Bottom Text"
-          onChange={getBottomText}
+          onChange={handleChange}
         />
 
         <button className="btn" onClick={getNewImage}>
           Get a new meme image 🖼
         </button>
       </form>
-      <img src={meme.randomImage} alt="" />
+      <div className="meme">
+        <img src={meme.randomImage} className="meme--image" />
+        <h2 className="meme--text top">{meme.topText}</h2>
+        <h2 className="meme--text bottom">{meme.bottomText}</h2>
+      </div>
     </main>
   );
 }
