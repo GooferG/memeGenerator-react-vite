@@ -17,9 +17,8 @@ export default function CreateMemeForm() {
   console.log(allMemes);
 
   function getNewImage(e) {
-    const memesArr = allMemes;
-    const randomNum = Math.floor(Math.random() * memesArr.length);
-    const url = memesArr[randomNum].url;
+    const randomNum = Math.floor(Math.random() * allMemes.length);
+    const url = allMemes[randomNum].url;
     e.preventDefault();
     setMeme((prevMemes) => ({ ...prevMemes, randomImage: url }));
   }
